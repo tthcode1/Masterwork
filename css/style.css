@@ -274,3 +274,114 @@ body {
     margin: 0 auto;
     line-height: 1.6;
 }
+/* --- 7. FOOTER STYLES --- */
+.main-footer {
+    background-color: #f7f9fc; /* Màu nền xám xanh rất nhạt giống ảnh */
+    position: relative;
+}
+
+.footer-heading {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+}
+
+.footer-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--brand-color);
+}
+
+/* --- Khối Newsletter --- */
+.newsletter-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); /* Hiệu ứng đổ bóng mềm */
+}
+
+.newsletter-input {
+    background-color: #f8f9fa;
+    border: none;
+    padding: 12px 15px;
+    box-shadow: none !important; /* Xóa viền xanh mặc định của Bootstrap khi focus */
+}
+
+.newsletter-input:focus {
+    background-color: #f1f3f5;
+}
+
+.btn-brand {
+    background-color: var(--brand-color);
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 25px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-brand:hover {
+    background-color: #b03652; /* Màu hồng đậm hơn khi hover */
+    color: #fff;
+}
+
+.newsletter-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* --- Đường kẻ ngang & Phần dưới (Copyright, Social) --- */
+.footer-divider {
+    border-top: 1px solid #e1e5eb;
+    margin-top: 50px;
+}
+
+.copyright-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.social-icons li {
+    margin-left: 20px;
+}
+
+.social-icons a {
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--brand-color);
+}
+
+/* --- Nút Back To Top ở góc phải --- */
+.back-to-top {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background-color: var(--brand-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.back-to-top:hover {
+    background-color: #b03652;
+    color: #fff;
+}
