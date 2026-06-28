@@ -1,0 +1,276 @@
+/* --- 1. CSS NỀN TẢNG --- */
+:root {
+    --brand-color: #d1496a; /* Màu đỏ hồng chủ đạo */
+    --text-dark: #2c3038;
+    --text-muted: #6c757d;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+.navbar {
+    padding: 15px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 24px;
+    color: var(--brand-color) !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-icon {
+    color: var(--text-dark);
+    font-size: 18px;
+    margin: 0 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+/* --- Nền tròn cho icon Tìm kiếm --- */
+.search-circle {
+    width: 45px;
+    height: 45px;
+    background-color: #f8f9fa; /* Màu nền xám rất nhạt */
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ea8b6; /* Hình 1: Màu xám nhạt lúc chưa trỏ chuột */
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-circle:hover {
+    color: var(--text-dark); /* Hình 2: Đổi sang màu đậm khi trỏ chuột vào */
+}
+
+
+
+/* --- 2. HIỆU ỨNG MENU CHÍNH & THANH GẠCH DƯỚI --- */
+.nav-link {
+    font-weight: 600;
+    color: var(--text-dark) !important;
+    margin: 0 10px;
+    font-size: 15px;
+    position: relative; 
+    padding-bottom: 6px; 
+    transition: color 0.3s ease-in-out; 
+}
+
+/* Thanh gạch dưới dùng ::before để không lỗi mũi tên Dropdown */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    width: 0; 
+    height: 2px; 
+    bottom: 0;
+    left: 0; 
+    background-color: var(--brand-color); 
+    transition: width 0.3s ease-in-out; 
+}
+
+/* Chỉ khi rê chuột vào mới dài ra 30% */
+.nav-link:hover::before {
+    width: 30%;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--brand-color) !important;
+}
+
+
+/* --- 3. HIỆU ỨNG DROPDOWN MENU KHI HOVER --- */
+@media all and (min-width: 992px) {
+    .navbar .nav-item.dropdown:hover .dropdown-menu {
+        display: block !important;
+        animation: slideFadeIn 0.3s ease-out forwards;
+    }
+    
+    .navbar .dropdown-menu {
+        display: block !important;
+        visibility: hidden;
+        opacity: 0;
+        margin-top: 0; 
+        border: none !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+        border-radius: 8px;
+        padding: 10px 0;
+    }
+}
+
+@keyframes slideFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+        visibility: visible;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+}
+
+/* --- 4. HIỆU ỨNG CÁC MỤC CON (DROPDOWN ITEMS) --- */
+.dropdown-item {
+    padding: 10px 20px;
+    font-weight: 600;
+    color: var(--text-dark) !important;
+    transition: all 0.3s ease !important; 
+    position: relative; /* Gốc tọa độ cho thanh gạch dưới */
+}
+
+/* Tạo thanh gạch dưới ẩn cho menu con */
+.dropdown-item::before {
+    content: '';
+    position: absolute;
+    width: 0; 
+    height: 2px; 
+    bottom: 8px; /* Đẩy lên cho sát chân chữ */
+    left: 20px; /* Xuất phát thẳng hàng với chữ do padding */
+    background-color: var(--brand-color); 
+    transition: width 0.3s ease-in-out; 
+}
+
+/* Khi trỏ chuột vào thì thanh gạch kéo dài ra */
+.dropdown-item:hover::before {
+    width: 10%; /* Có thể điều chỉnh % độ dài theo ý thích */
+}
+
+/* Hiệu ứng đổi màu + trượt phải khi hover */
+.dropdown-item:hover {
+    color: var(--brand-color) !important;
+    background-color: transparent !important; 
+    transform: translateX(5px) !important; 
+}
+
+/* --- 5. HIỆU ỨNG NÚT BẤM SCHEDULE A DEMO --- */
+.btn-outline-brand {
+    color: var(--brand-color);
+    border: 1px solid var(--brand-color);
+    font-weight: 600;
+    padding: 8px 24px;
+    border-radius: 4px;
+    background: transparent;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out; 
+}
+
+.btn-outline-brand:hover {
+    background-color: var(--brand-color); 
+    color: #fff; 
+}
+
+/* --- 6. GIAO DIỆN PHẦN HERO VÀ NỘI DUNG BÊN DƯỚI --- */
+.hero-section {
+    padding: 100px 0;
+    position: relative;
+    background: linear-gradient(to right, rgba(255,255,255,0.9) 40%, rgba(255,255,255,0.4) 100%), 
+                url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80') no-repeat center center / cover;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 400px;
+}
+
+.hero-img-container {
+    text-align: center;
+    position: relative;
+}
+
+.hero-img-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Giao diện Sidebar bên phải */
+.right-sidebar {
+    position: fixed;
+    top: 25%;
+    right: 0;
+    background-color: #11152c;
+    width: 70px;
+    border-radius: 8px 0 0 8px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+}
+
+.right-sidebar a {
+    color: #a0a5b8;
+    text-decoration: none;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #232845;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.right-sidebar a:last-child {
+    border-bottom: none;
+}
+
+.right-sidebar a i {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.right-sidebar a:hover {
+    color: #fff;
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Giao diện phần Why Choose Us */
+.why-choose-us {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.section-tag {
+    color: var(--brand-color);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+.section-desc {
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
