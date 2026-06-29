@@ -12,9 +12,19 @@ body {
 }
 
 .navbar {
-    padding: 15px 0;
+    /* Tăng padding từ 15px lên 20px hoặc 25px để menu cao hơn */
+    padding: 25px 0; 
     background-color: #fff;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease-in-out; 
+}
+
+/* Đừng quên điều chỉnh cả khi nó cuộn xuống để nó vẫn giữ được sự mượt mà */
+.navbar.nav-scrolled {
+    /* Khi cuộn xuống, ta thu nó lại 10px (vẫn rộng hơn mức 5px cũ) */
+    padding: 20px 0; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background-color: rgba(255, 255, 255, 0.98);
 }
 
 .navbar-brand {
@@ -252,7 +262,6 @@ body {
     /* Nếu bạn muốn cắt sát chiếc nơ hơn nữa, có thể thêm dòng margin-bottom âm như dưới đây */
     margin-bottom: -15px; 
 }
-}
 
 /* Responsive cho màn hình nhỏ */
 @media (max-width: 991px) {
@@ -312,34 +321,93 @@ body {
     background-color: rgba(255,255,255,0.1);
 }
 
-/* Giao diện phần Why Choose Us */
+/* =========================================
+   GIAO DIỆN PHẦN: WHY CHOOSE US
+   ========================================= */
 .why-choose-us {
-    padding: 80px 0;
-    background-color: #fff;
+    padding: 90px 0;
+    background-color: #ffffff;
 }
 
+/* Định dạng thẻ Tag màu đỏ hồng */
 .section-tag {
     color: var(--brand-color);
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     display: block;
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-size: 46px; /* Tăng cỡ chữ to hơn cho giống ảnh 2 */
     font-weight: 800;
     color: var(--text-dark);
     margin-bottom: 20px;
+    line-height: 1.2; /* Thu hẹp khoảng cách giữa 2 dòng chữ */
 }
 
 .section-desc {
     color: var(--text-muted);
-    max-width: 700px;
+    max-width: 750px; /* Nới rộng một chút để text nằm trên 2 dòng đẹp hơn */
     margin: 0 auto;
     line-height: 1.6;
+    font-size: 16px;
+}
+
+/* --- ĐỊNH DẠNG 3 KHỐI CARD BÊN DƯỚI --- */
+.feature-card {
+    background-color: #f8f9fc; /* Màu nền xám xanh siêu nhạt giống ảnh */
+    padding: 50px 30px;
+    border-radius: 8px;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng nảy nhẹ và đổ bóng khi rê chuột vào khối */
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Định dạng cho ảnh Icon tự tải lên --- */
+.icon-box {
+    font-size: 55px; /* Làm icon to ra như ảnh */
+    color: var(--brand-color, #d1496a);
+    margin-bottom: 25px;
+}
+.feature-icon-img {
+    height: 65px; /* Bạn có thể tăng giảm số này để icon to/nhỏ theo ý muốn */
+    width: auto;
+    object-fit: contain;
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-dark, #2c3038);
+    margin-bottom: 15px;
+}
+
+.feature-desc {
+    color: var(--text-muted, #6c757d);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Tối ưu kích thước chữ trên màn hình điện thoại */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.2rem;
+    }
+    .why-choose-us {
+        padding: 60px 0;
+    }
+    .feature-card {
+        padding: 40px 20px;
+    }
 }
 /* --- 7. FOOTER STYLES --- */
 .main-footer {
@@ -553,4 +621,167 @@ body {
     .hero-man-box img {
         max-height: 380px; /* Thu nhỏ bớt khi trên màn hình điện thoại */
     }
+}
+
+/* --- 8. ABOUT SECTION & STATS --- */
+.bg-light {
+    background-color: #f7f9fc !important; /* Màu nền xám nhạt như trong hình */
+}
+
+/* Ép kiểu cho thẻ span/p trong phần About về canh trái */
+.about-section .section-tag,
+.about-section .section-title,
+.about-section .section-desc {
+    text-align: left !important;
+}
+
+/* Các thẻ thông số (Stats) */
+.stat-card {
+    border-radius: 4px;
+}
+
+.stat-title {
+    font-size: 15px;
+}
+
+.stat-number {
+    color: var(--brand-color);
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.stat-desc {
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* Nút góc phải ở trên cùng (Floating toggle button) */
+.floating-btn {
+    width: 40px;
+    height: 40px;
+    background-color: #8c94a4;
+    color: #fff;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.floating-btn:hover {
+    background-color: var(--text-dark);
+    color: #fff;
+}
+
+/* --- 9. HIỆU ỨNG HOVER: NỔI LÊN (PHÓNG TO) NHƯNG KHÔNG ĐỔ BÓNG --- */
+
+/* 1. Trạng thái mặc định */
+.stat-card {
+    /* Bóng đổ mặc định giống trong ảnh */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08) !important; 
+    transition: all 0.3s ease-in-out !important; 
+    
+    /* Đặt kích thước cơ bản là 100% */
+    transform: scale(1) !important; 
+}
+
+/* 2. Trạng thái Hover (Khi đưa chuột vào) */
+.stat-card:hover,
+.stat-card.hover-effect:hover {
+    /* Làm thẻ nổi (phóng to) lên 3% về phía người nhìn */
+    transform: scale(1.03) !important; 
+    
+    /* Xóa hoàn toàn bóng đổ theo yêu cầu của bạn */
+    box-shadow: none !important; 
+    
+    /* Đảm bảo thẻ nằm trên cùng khi nổi lên, không bị các thẻ khác che mất */
+    z-index: 10; 
+}
+
+/* --- 10. HIỆU ỨNG TRƯỢT LÊN CHO ẢNH TRONG PHẦN ABOUT --- */
+
+/* 1. Trạng thái mặc định của ảnh */
+.about-section img {
+    transition: transform 0.4s ease-in-out !important; /* Thời gian chuyển động mượt mà */
+    transform: translateY(0); 
+}
+
+/* 2. Trạng thái khi đưa chuột vào (Hover) */
+.about-section img:hover {
+    transform: translateY(-15px) !important; /* Kéo ảnh trượt thẳng lên trên 15px */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important; /* Tùy chọn: Thêm chút bóng đổ cho đẹp hơn khi ảnh rời khỏi mặt phẳng */
+}
+/* Trạng thái nút sau khi click */
+.btn-light.clicked {
+    /* Tạo hiệu ứng bóng mờ lan tỏa xung quanh nút */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3) !important;
+    
+    /* Giữ nguyên màu sắc hoặc tùy chỉnh nếu muốn */
+    background-color: #fff !important;
+    border: 2px solid #000 !important;
+    transform: scale(0.98); /* Hiệu ứng nhấn nhẹ vào (thu nhỏ 2%) */
+    transition: all 0.2s ease;
+}
+/* --- 10. CTA SECTION --- */
+.cta-section {
+    padding: 100px 0;
+    /* Phủ lớp màu đen mờ (0.6) lên trên ảnh nền */
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('../img/bg.jpg') no-repeat center center / cover;
+    background-attachment: fixed; /* Tạo hiệu ứng Parallax (cuộn trang ảnh đứng yên) */
+    color: #fff;
+    text-align: left;
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.cta-desc {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.cta-section .btn-light {
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 0; /* Nút hình chữ nhật bo cạnh nhẹ hoặc để vuông */
+    transition: 0.3s;
+}
+
+.cta-section .btn-light:hover {
+    background-color: var(--brand-color);
+    color: #fff;
+    border-color: var(--brand-color);
+}
+/* --- LÀM SẮC NÉT CHỮ NÚT READ MORE --- */
+
+.btn-light {
+    /* Đảm bảo chữ sắc nét trên mọi trình duyệt */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    
+    /* Ép chữ không có viền hoặc hiệu ứng đổ bóng làm nhòe */
+    text-shadow: none !important;
+    
+    /* Đảm bảo font chữ mảnh và rõ ràng */
+    font-weight: 500; 
+    letter-spacing: 0.5px; /* Tạo khoảng cách chữ vừa phải để nhìn thoáng hơn */
+    /* --- BO GÓC NÚT READ MORE --- */
+}
+/* --- BO GÓC NÚT READ MORE --- */
+.btn-light {
+    /* Điều chỉnh con số này để tăng/giảm độ bo góc */
+    /* 5px là độ bo nhẹ nhàng, tinh tế giống ảnh 1 */
+    border-radius: 5px !important; 
+    
+    /* Đảm bảo nội dung bên trong không bị tràn ra ngoài góc bo */
+    overflow: hidden;
 }
