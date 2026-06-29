@@ -170,39 +170,106 @@ body {
     color: #fff; 
 }
 
-/* --- 6. GIAO DIỆN PHẦN HERO VÀ NỘI DUNG BÊN DƯỚI --- */
-.hero-section {
-    padding: 100px 0;
+/* =========================================
+   GIAO DIỆN PHẦN HERO BANNER CHÍNH XÁC NHẤT
+   ========================================= */
+.hero-banner {
     position: relative;
-    background: linear-gradient(to right, rgba(255,255,255,0.9) 40%, rgba(255,255,255,0.4) 100%), 
-                url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80') no-repeat center center / cover;
+    padding-top: 130px; /* Căn lề trên để chữ được đẩy xuống giữa */
+    padding-bottom: 0;  /* Phải giữ là 0 để chân ảnh chàng trai chạm sát mép dưới */
+    min-height: 600px;  /* THAY ĐỔI QUAN TRỌNG: Ép chiều cao chuẩn 600px giống ảnh mẫu */
+    display: flex;
+    align-items: center; /* Căn giữa nội dung theo chiều dọc */
+    overflow: hidden;
+    
+    /* Lớp nền mờ giống ảnh mẫu của bạn */
+    background: linear-gradient(to right, 
+                rgba(255, 255, 255, 1) 0%, 
+                rgba(255, 255, 255, 1) 35%, 
+                rgba(255, 255, 255, 0.85) 60%, 
+                rgba(255, 255, 255, 0.95) 100%), 
+                url('../img/bg-girl.png') no-repeat center center;
+    background-size: cover;
 }
 
+.hero-text-col {
+    position: relative;
+    z-index: 3; /* Đảm bảo chữ luôn nổi lên trên cùng */
+}
+
+/* --- CẬP NHẬT KÍCH THƯỚC CHỮ TIÊU ĐỀ CHÍNH --- */
 .hero-title {
-    font-size: 3.5rem;
+    font-size: 2.8rem !important; /* Thêm !important để ép trình duyệt nhận cỡ chữ này */
     font-weight: 800;
-    color: var(--text-dark);
-    line-height: 1.2;
+    color: var(--text-dark, #2c3038);
+    line-height: 1.3;
     margin-bottom: 20px;
 }
 
+/* --- CẬP NHẬT KÍCH THƯỚC ĐOẠN VĂN NHỎ --- */
 .hero-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-muted);
+    font-size: 1.15rem; /* Kích thước chữ đoạn mô tả */
+    color: var(--text-muted, #6c757d);
     margin-bottom: 40px;
-    max-width: 400px;
+    max-width: 420px; /* Bóp chiều rộng lại một chút để chữ rớt dòng giống hệt ảnh 2 */
+    line-height: 1.6;
 }
 
-.hero-img-container {
-    text-align: center;
+/* Nút bấm Get Started */
+.btn-hero {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--brand-color, #d1496a);
+    border: 1px solid var(--brand-color, #d1496a);
+    padding: 12px 32px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-hero:hover {
+    background-color: var(--brand-color, #d1496a);
+    color: #fff;
+}
+
+/* Ép cột chứa ảnh chàng trai găm sát xuống đáy */
+.hero-banner .row {
+    width: 100%;
+}
+.hero-man-col {
+    align-self: flex-end; /* Đẩy anh chàng xuống sát mép dưới */
     position: relative;
+    z-index: 2; /* Nằm trên lớp nền cô gái */
 }
 
-.hero-img-container img {
-    max-width: 100%;
-    height: auto;
+.hero-man-img {
+    max-height: 480px; /* Chỉnh độ lớn của ảnh nhỏ lại để vừa vặn với chiều cao 600px của banner */
+    width: auto;
+    display: block;
+    object-fit: contain;
+    /* Nếu bạn muốn cắt sát chiếc nơ hơn nữa, có thể thêm dòng margin-bottom âm như dưới đây */
+    margin-bottom: -15px; 
+}
 }
 
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 991px) {
+    .hero-banner {
+        padding-top: 60px;
+        min-height: auto;
+    }
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-man-col {
+        margin-top: 30px;
+    }
+    .hero-man-img {
+        max-height: 400px;
+    }
+}
 /* Giao diện Sidebar bên phải */
 .right-sidebar {
     position: fixed;
@@ -384,4 +451,106 @@ body {
 .back-to-top:hover {
     background-color: #b03652;
     color: #fff;
+}
+.hero-section {
+    min-height: 80vh;
+    background-color: #ffffff;
+}
+
+//* --- 6. GIAO DIỆN PHẦN HERO VÀ NỘI DUNG BÊN DƯỚI --- */
+.hero-banner {
+    padding: 80px 0 0 0; 
+    min-height: 90vh;
+    position: relative;
+    
+    /* Tạm thời bỏ dải màu trắng, chỉ gọi thẳng ảnh ra để test */
+    /* NẾU ẢNH CỦA BẠN ĐUÔI JPG THÌ ĐỔI THÀNH bg-girl.jpg NHÉ */
+    background: url('../img/bg-girl.png') no-repeat center center / cover;
+    
+    background-color: pink; /* Màu nền dự phòng */
+    
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-title {
+    /* ... các thuộc tính cũ giữ nguyên ... */
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); /* Tạo lớp sáng nhẹ bao quanh chữ */
+}
+
+/* Tiêu đề chữ đậm và có màu xám đen sang trọng */
+.hero-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 3.8rem;
+    font-weight: 700;
+    color: #2c3038;
+    line-height: 1.15;
+    margin-bottom: 25px;
+}
+
+.hero-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.15rem;
+    color: #5a5a5a;
+    margin-bottom: 40px;
+    max-width: 480px;
+    line-height: 1.6;
+}
+
+/* Định dạng nút Get Started chuẩn chỉ */
+.btn-hero {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--brand-color);
+    border: 1px solid var(--brand-color);
+    background-color: transparent;
+    padding: 12px 28px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-hero:hover {
+    color: #fff;
+    background-color: var(--brand-color);
+    box-shadow: 0 4px 15px rgba(209, 73, 106, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Khối bao ảnh anh chàng tóc xù */
+.hero-man-box {
+    align-self: flex-end; /* Ép sát đáy container */
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-man-box img {
+    max-height: 550px; /* Tăng kích thước chiều cao lên cho ảnh to và rõ */
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* Tối ưu hiển thị trên Mobile & Tablet */
+@media (max-width: 991.98px) {
+    .hero-banner {
+        padding: 60px 0 0 0;
+        min-height: auto;
+        /* Trên mobile che hẳn ảnh cô gái đi để tránh rối mắt, giữ nền trắng đọc chữ */
+        background: #ffffff; 
+    }
+    .hero-title {
+        font-size: 2.6rem;
+    }
+    .hero-subtitle {
+        margin: 0 auto 30px auto;
+    }
+    .hero-man-box img {
+        max-height: 380px; /* Thu nhỏ bớt khi trên màn hình điện thoại */
+    }
 }
