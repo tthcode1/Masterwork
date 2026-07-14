@@ -1,0 +1,1284 @@
+/* --- 1. CSS NỀN TẢNG --- */
+:root {
+    --brand-color: #d1496a; /* Màu đỏ hồng chủ đạo */
+    --text-dark: #2c3038;
+    --text-muted: #6c757d;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+.navbar {
+    /* Tăng padding từ 15px lên 20px hoặc 25px để menu cao hơn */
+    padding: 25px 0; 
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease-in-out; 
+}
+
+/* Đừng quên điều chỉnh cả khi nó cuộn xuống để nó vẫn giữ được sự mượt mà */
+.navbar.nav-scrolled {
+    /* Khi cuộn xuống, ta thu nó lại 10px (vẫn rộng hơn mức 5px cũ) */
+    padding: 20px 0; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background-color: rgba(255, 255, 255, 0.98);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 24px;
+    color: var(--brand-color) !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-icon {
+    color: var(--text-dark);
+    font-size: 18px;
+    margin: 0 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+/* --- Nền tròn cho icon Tìm kiếm --- */
+.search-circle {
+    width: 45px;
+    height: 45px;
+    background-color: #f8f9fa; /* Màu nền xám rất nhạt */
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ea8b6; /* Hình 1: Màu xám nhạt lúc chưa trỏ chuột */
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-circle:hover {
+    color: var(--text-dark); /* Hình 2: Đổi sang màu đậm khi trỏ chuột vào */
+}
+
+
+
+/* --- 2. HIỆU ỨNG MENU CHÍNH & THANH GẠCH DƯỚI --- */
+.nav-link {
+    font-weight: 600;
+    color: var(--text-dark) !important;
+    margin: 0 10px;
+    font-size: 15px;
+    position: relative; 
+    padding-bottom: 6px; 
+    transition: color 0.3s ease-in-out; 
+}
+
+/* Thanh gạch dưới dùng ::before để không lỗi mũi tên Dropdown */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    width: 0; 
+    height: 2px; 
+    bottom: 0;
+    left: 0; 
+    background-color: var(--brand-color); 
+    transition: width 0.3s ease-in-out; 
+}
+
+/* Chỉ khi rê chuột vào mới dài ra 30% */
+.nav-link:hover::before {
+    width: 30%;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--brand-color) !important;
+}
+
+
+/* --- 3. HIỆU ỨNG DROPDOWN MENU KHI HOVER --- */
+@media all and (min-width: 992px) {
+    .navbar .nav-item.dropdown:hover .dropdown-menu {
+        display: block !important;
+        animation: slideFadeIn 0.3s ease-out forwards;
+    }
+    
+    .navbar .dropdown-menu {
+        display: block !important;
+        visibility: hidden;
+        opacity: 0;
+        margin-top: 0; 
+        border: none !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+        border-radius: 8px;
+        padding: 10px 0;
+    }
+}
+
+@keyframes slideFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+        visibility: visible;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+}
+
+/* --- 4. HIỆU ỨNG CÁC MỤC CON (DROPDOWN ITEMS) --- */
+.dropdown-item {
+    padding: 10px 20px;
+    font-weight: 600;
+    color: var(--text-dark) !important;
+    transition: all 0.3s ease !important; 
+    position: relative; /* Gốc tọa độ cho thanh gạch dưới */
+}
+
+/* Tạo thanh gạch dưới ẩn cho menu con */
+.dropdown-item::before {
+    content: '';
+    position: absolute;
+    width: 0; 
+    height: 2px; 
+    bottom: 8px; /* Đẩy lên cho sát chân chữ */
+    left: 20px; /* Xuất phát thẳng hàng với chữ do padding */
+    background-color: var(--brand-color); 
+    transition: width 0.3s ease-in-out; 
+}
+
+/* Khi trỏ chuột vào thì thanh gạch kéo dài ra */
+.dropdown-item:hover::before {
+    width: 10%; /* Có thể điều chỉnh % độ dài theo ý thích */
+}
+
+/* Hiệu ứng đổi màu + trượt phải khi hover */
+.dropdown-item:hover {
+    color: var(--brand-color) !important;
+    background-color: transparent !important; 
+    transform: translateX(5px) !important; 
+}
+
+/* --- 5. HIỆU ỨNG NÚT BẤM SCHEDULE A DEMO --- */
+.btn-outline-brand {
+    color: var(--brand-color);
+    border: 1px solid var(--brand-color);
+    font-weight: 600;
+    padding: 8px 24px;
+    border-radius: 4px;
+    background: transparent;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out; 
+}
+
+.btn-outline-brand:hover {
+    background-color: var(--brand-color); 
+    color: #fff; 
+}
+
+/* =========================================
+   GIAO DIỆN PHẦN HERO BANNER CHÍNH XÁC NHẤT
+   ========================================= */
+.hero-banner {
+    position: relative;
+    padding-top: 130px; /* Căn lề trên để chữ được đẩy xuống giữa */
+    padding-bottom: 0;  /* Phải giữ là 0 để chân ảnh chàng trai chạm sát mép dưới */
+    min-height: 600px;  /* THAY ĐỔI QUAN TRỌNG: Ép chiều cao chuẩn 600px giống ảnh mẫu */
+    display: flex;
+    align-items: center; /* Căn giữa nội dung theo chiều dọc */
+    overflow: hidden;
+    
+    /* Lớp nền mờ giống ảnh mẫu của bạn */
+    background: linear-gradient(to right, 
+                rgba(255, 255, 255, 1) 0%, 
+                rgba(255, 255, 255, 1) 35%, 
+                rgba(255, 255, 255, 0.85) 60%, 
+                rgba(255, 255, 255, 0.95) 100%), 
+                url('../img/bg-girl.png') no-repeat center center;
+    background-size: cover;
+}
+
+.hero-text-col {
+    position: relative;
+    z-index: 3; /* Đảm bảo chữ luôn nổi lên trên cùng */
+}
+
+/* --- CẬP NHẬT KÍCH THƯỚC CHỮ TIÊU ĐỀ CHÍNH --- */
+.hero-title {
+    font-size: 2.8rem !important; /* Thêm !important để ép trình duyệt nhận cỡ chữ này */
+    font-weight: 800;
+    color: var(--text-dark, #2c3038);
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+/* --- CẬP NHẬT KÍCH THƯỚC ĐOẠN VĂN NHỎ --- */
+.hero-subtitle {
+    font-size: 1.15rem; /* Kích thước chữ đoạn mô tả */
+    color: var(--text-muted, #6c757d);
+    margin-bottom: 40px;
+    max-width: 420px; /* Bóp chiều rộng lại một chút để chữ rớt dòng giống hệt ảnh 2 */
+    line-height: 1.6;
+}
+
+/* Nút bấm Get Started */
+.btn-hero {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--brand-color, #d1496a);
+    border: 1px solid var(--brand-color, #d1496a);
+    padding: 12px 32px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* =========================================
+   HIỆU ỨNG KHỐI MỜ (FOCUS RING) CHO NÚT HERO "GET STARTED"
+   ========================================= */
+
+.btn-hero:active, .btn-hero:focus {
+    /* Xóa bỏ viền mặc định của trình duyệt */
+    outline: none !important;
+    
+    /* Tạo khối mờ màu hồng bao quanh nút (độ dày 4px) */
+    box-shadow: 0 0 0 4px rgba(209, 73, 106, 0.3) !important;
+    
+    /* Ép nút đứng yên, không bị nảy lên hay trượt đi khi đang click */
+    transform: translateY(0) !important;
+    
+    /* Giữ nguyên nền trắng, chữ và viền màu hồng khi click */
+    background-color: #ffffff !important;
+    color: var(--brand-color) !important;
+    border-color: var(--brand-color) !important;
+    
+    transition: all 0.2s ease;
+}
+
+.btn-hero:active:hover, 
+.btn-hero:focus:hover {
+    background-color: var(--brand-color) !important; /* Đổi lại nền hồng */
+    color: #ffffff !important;                       /* Đổi lại chữ trắng */
+    border-color: var(--brand-color) !important;
+}
+
+.btn-hero:hover {
+    background-color: var(--brand-color, #d1496a);
+    color: #fff;
+}
+
+/* Ép cột chứa ảnh chàng trai găm sát xuống đáy */
+.hero-banner .row {
+    width: 100%;
+}
+.hero-man-col {
+    align-self: flex-end; /* Đẩy anh chàng xuống sát mép dưới */
+    position: relative;
+    z-index: 2; /* Nằm trên lớp nền cô gái */
+}
+
+.hero-man-img {
+    max-height: 480px; /* Chỉnh độ lớn của ảnh nhỏ lại để vừa vặn với chiều cao 600px của banner */
+    width: auto;
+    display: block;
+    object-fit: contain;
+    /* Nếu bạn muốn cắt sát chiếc nơ hơn nữa, có thể thêm dòng margin-bottom âm như dưới đây */
+    margin-bottom: -15px; 
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 991px) {
+    .hero-banner {
+        padding-top: 60px;
+        min-height: auto;
+    }
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-man-col {
+        margin-top: 30px;
+    }
+    .hero-man-img {
+        max-height: 400px;
+    }
+}
+/* Giao diện Sidebar bên phải */
+.right-sidebar {
+    position: fixed;
+    top: 25%;
+    right: 0;
+    background-color: #11152c;
+    width: 70px;
+    border-radius: 8px 0 0 8px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+}
+
+.right-sidebar a {
+    color: #a0a5b8;
+    text-decoration: none;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #232845;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.right-sidebar a:last-child {
+    border-bottom: none;
+}
+
+.right-sidebar a i {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.right-sidebar a:hover {
+    color: #fff;
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* =========================================
+   GIAO DIỆN PHẦN: WHY CHOOSE US
+   ========================================= */
+.why-choose-us {
+    padding: 90px 0;
+    background-color: #ffffff;
+}
+
+/* Định dạng thẻ Tag màu đỏ hồng */
+.section-tag {
+    color: var(--brand-color);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.section-title {
+    font-size: 46px; /* Tăng cỡ chữ to hơn cho giống ảnh 2 */
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    line-height: 1.2; /* Thu hẹp khoảng cách giữa 2 dòng chữ */
+}
+
+.section-desc {
+    color: var(--text-muted);
+    max-width: 750px; /* Nới rộng một chút để text nằm trên 2 dòng đẹp hơn */
+    margin: 0 auto;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* --- ĐỊNH DẠNG 3 KHỐI CARD BÊN DƯỚI --- */
+.feature-card {
+    background-color: #f8f9fc; /* Màu nền xám xanh siêu nhạt giống ảnh */
+    padding: 50px 30px;
+    border-radius: 8px;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng nảy nhẹ và đổ bóng khi rê chuột vào khối */
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Định dạng cho ảnh Icon tự tải lên --- */
+.icon-box {
+    font-size: 55px; /* Làm icon to ra như ảnh */
+    color: var(--brand-color, #d1496a);
+    margin-bottom: 25px;
+}
+.feature-icon-img {
+    height: 65px; /* Bạn có thể tăng giảm số này để icon to/nhỏ theo ý muốn */
+    width: auto;
+    object-fit: contain;
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-dark, #2c3038);
+    margin-bottom: 15px;
+}
+
+.feature-desc {
+    color: var(--text-muted, #6c757d);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Tối ưu kích thước chữ trên màn hình điện thoại */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.2rem;
+    }
+    .why-choose-us {
+        padding: 60px 0;
+    }
+    .feature-card {
+        padding: 40px 20px;
+    }
+}
+/* --- 7. FOOTER STYLES --- */
+.main-footer {
+    background-color: #f7f9fc; /* Màu nền xám xanh rất nhạt giống ảnh */
+    position: relative;
+}
+
+.footer-heading {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+}
+
+.footer-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--brand-color);
+}
+
+/* --- Khối Newsletter --- */
+.newsletter-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); /* Hiệu ứng đổ bóng mềm */
+}
+
+.newsletter-input {
+    background-color: #f8f9fa;
+    border: none;
+    padding: 12px 15px;
+    box-shadow: none !important; /* Xóa viền xanh mặc định của Bootstrap khi focus */
+}
+
+.newsletter-input:focus {
+    background-color: #f1f3f5;
+}
+
+.btn-brand {
+    background-color: var(--brand-color);
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 25px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-brand:hover {
+    background-color: #b03652; /* Màu hồng đậm hơn khi hover */
+    color: #fff;
+}
+
+.newsletter-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* --- Đường kẻ ngang & Phần dưới (Copyright, Social) --- */
+.footer-divider {
+    border-top: 1px solid #e1e5eb;
+    margin-top: 50px;
+}
+
+.copyright-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.social-icons li {
+    margin-left: 20px;
+}
+
+.social-icons a {
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--brand-color);
+}
+
+/* --- Nút Back To Top ở góc phải --- */
+.back-to-top {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background-color: var(--brand-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.back-to-top:hover {
+    background-color: #b03652;
+    color: #fff;
+}
+.hero-section {
+    min-height: 80vh;
+    background-color: #ffffff;
+}
+
+//* --- 6. GIAO DIỆN PHẦN HERO VÀ NỘI DUNG BÊN DƯỚI --- */
+.hero-banner {
+    padding: 80px 0 0 0; 
+    min-height: 90vh;
+    position: relative;
+    
+    /* Tạm thời bỏ dải màu trắng, chỉ gọi thẳng ảnh ra để test */
+    /* NẾU ẢNH CỦA BẠN ĐUÔI JPG THÌ ĐỔI THÀNH bg-girl.jpg NHÉ */
+    background: url('../img/bg-girl.png') no-repeat center center / cover;
+    
+    background-color: pink; /* Màu nền dự phòng */
+    
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-title {
+    /* ... các thuộc tính cũ giữ nguyên ... */
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8); /* Tạo lớp sáng nhẹ bao quanh chữ */
+}
+
+/* Tiêu đề chữ đậm và có màu xám đen sang trọng */
+.hero-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 3.8rem;
+    font-weight: 700;
+    color: #2c3038;
+    line-height: 1.15;
+    margin-bottom: 25px;
+}
+
+.hero-subtitle {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.15rem;
+    color: #5a5a5a;
+    margin-bottom: 40px;
+    max-width: 480px;
+    line-height: 1.6;
+}
+
+/* Định dạng nút Get Started chuẩn chỉ */
+.btn-hero {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--brand-color);
+    border: 1px solid var(--brand-color);
+    background-color: transparent;
+    padding: 12px 28px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-hero:hover {
+    color: #fff;
+    background-color: var(--brand-color);
+    box-shadow: 0 4px 15px rgba(209, 73, 106, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Khối bao ảnh anh chàng tóc xù */
+.hero-man-box {
+    align-self: flex-end; /* Ép sát đáy container */
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-man-box img {
+    max-height: 550px; /* Tăng kích thước chiều cao lên cho ảnh to và rõ */
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* Tối ưu hiển thị trên Mobile & Tablet */
+@media (max-width: 991.98px) {
+    .hero-banner {
+        padding: 60px 0 0 0;
+        min-height: auto;
+        /* Trên mobile che hẳn ảnh cô gái đi để tránh rối mắt, giữ nền trắng đọc chữ */
+        background: #ffffff; 
+    }
+    .hero-title {
+        font-size: 2.6rem;
+    }
+    .hero-subtitle {
+        margin: 0 auto 30px auto;
+    }
+    .hero-man-box img {
+        max-height: 380px; /* Thu nhỏ bớt khi trên màn hình điện thoại */
+    }
+}
+
+/* --- 8. ABOUT SECTION & STATS --- */
+.bg-light {
+    background-color: #f7f9fc !important; /* Màu nền xám nhạt như trong hình */
+}
+
+/* Ép kiểu cho thẻ span/p trong phần About về canh trái */
+.about-section .section-tag,
+.about-section .section-title,
+.about-section .section-desc {
+    text-align: left !important;
+}
+
+/* Các thẻ thông số (Stats) */
+.stat-card {
+    border-radius: 4px;
+}
+
+.stat-title {
+    font-size: 15px;
+}
+
+.stat-number {
+    color: var(--brand-color);
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.stat-desc {
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* Nút góc phải ở trên cùng (Floating toggle button) */
+.floating-btn {
+    width: 40px;
+    height: 40px;
+    background-color: #8c94a4;
+    color: #fff;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.floating-btn:hover {
+    background-color: var(--text-dark);
+    color: #fff;
+}
+
+/* --- 9. HIỆU ỨNG HOVER: NỔI LÊN (PHÓNG TO) NHƯNG KHÔNG ĐỔ BÓNG --- */
+
+/* 1. Trạng thái mặc định */
+.stat-card {
+    /* Bóng đổ mặc định giống trong ảnh */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08) !important; 
+    transition: all 0.3s ease-in-out !important; 
+    
+    /* Đặt kích thước cơ bản là 100% */
+    transform: scale(1) !important; 
+}
+
+/* 2. Trạng thái Hover (Khi đưa chuột vào) */
+.stat-card:hover,
+.stat-card.hover-effect:hover {
+    /* Làm thẻ nổi (phóng to) lên 3% về phía người nhìn */
+    transform: scale(1.03) !important; 
+    
+    /* Xóa hoàn toàn bóng đổ theo yêu cầu của bạn */
+    box-shadow: none !important; 
+    
+    /* Đảm bảo thẻ nằm trên cùng khi nổi lên, không bị các thẻ khác che mất */
+    z-index: 10; 
+}
+
+/* --- 10. HIỆU ỨNG TRƯỢT LÊN CHO ẢNH TRONG PHẦN ABOUT --- */
+
+/* 1. Trạng thái mặc định của ảnh */
+.about-section img {
+    transition: transform 0.4s ease-in-out !important; /* Thời gian chuyển động mượt mà */
+    transform: translateY(0); 
+}
+
+/* =========================================
+   HIỆU ỨNG NÚT READ MORE KHI NHẤN CHUỘT
+   ========================================= */
+
+/* Trạng thái khi nút đang được nhấn (active) hoặc được chọn (focus) */
+.btn-light:active,
+.btn-light:focus {
+    background-color: #ffffff !important; /* Giữ nguyên nền màu trắng */
+    color: var(--text-dark) !important;   /* Giữ nguyên màu chữ */
+    border-color: #ffffff !important;
+    
+    /* Xóa outline mặc định của trình duyệt (thường có màu xanh) */
+    outline: none !important; 
+    
+    /* TẠO KHỐI MỜ XUNG QUANH: 
+       Dùng box-shadow với độ lan (spread) là 5px và màu xám/trắng trong suốt */
+    box-shadow: 0 0 0 5px rgba(200, 200, 200, 0.4) !important; 
+    
+    /* (Tùy chọn) Làm nút lún nhẹ xuống 1px để tạo cảm giác bấm vật lý */
+    transform: translateY(1px); 
+    transition: all 0.15s ease-out;
+}
+
+/* Riêng cho nút nằm trong phần nền tối (CTA Section) để viền mờ hiển thị đẹp hơn */
+.cta-section .btn-light:active,
+.cta-section .btn-light:focus {
+    /* Đổi màu viền sang trắng trong suốt để nổi bật trên nền đen của CTA */
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.3) !important; 
+}
+/* --- 10. CTA SECTION --- */
+.cta-section {
+    padding: 100px 0;
+    /* Phủ lớp màu đen mờ (0.6) lên trên ảnh nền */
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('../img/bg.jpg') no-repeat center center / cover;
+    background-attachment: fixed; /* Tạo hiệu ứng Parallax (cuộn trang ảnh đứng yên) */
+    color: #fff;
+    text-align: left;
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.cta-desc {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.cta-section .btn-light {
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 0; /* Nút hình chữ nhật bo cạnh nhẹ hoặc để vuông */
+    transition: 0.3s;
+}
+
+.cta-section .btn-light:hover {
+    background-color: var(--brand-color);
+    color: #fff;
+    border-color: var(--brand-color);
+}
+/* --- LÀM SẮC NÉT CHỮ NÚT READ MORE --- */
+
+.btn-light {
+    /* Đảm bảo chữ sắc nét trên mọi trình duyệt */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    
+    /* Ép chữ không có viền hoặc hiệu ứng đổ bóng làm nhòe */
+    text-shadow: none !important;
+    
+    /* Đảm bảo font chữ mảnh và rõ ràng */
+    font-weight: 500; 
+    letter-spacing: 0.5px; /* Tạo khoảng cách chữ vừa phải để nhìn thoáng hơn */
+    /* --- BO GÓC NÚT READ MORE --- */
+}
+/* --- BO GÓC NÚT READ MORE --- */
+.btn-light {
+    /* Điều chỉnh con số này để tăng/giảm độ bo góc */
+    /* 5px là độ bo nhẹ nhàng, tinh tế giống ảnh 1 */
+    border-radius: 5px !important; 
+    
+    /* Đảm bảo nội dung bên trong không bị tràn ra ngoài góc bo */
+    overflow: hidden;
+}
+/* =========================================
+   TẮT HIỆU ỨNG ĐỔI MÀU KHI RÊ CHUỘT (HOVER)
+   ========================================= */
+
+/* Dành cho nút màu hồng đỏ (phần About) */
+.btn-brand:hover {
+    background-color: var(--brand-color) !important; /* Giữ nguyên màu nền hồng đỏ ban đầu */
+    color: #ffffff !important;                       /* Giữ nguyên chữ màu trắng */
+    transform: none !important;                      /* Tắt các hiệu ứng nảy/phóng to nếu có */
+}
+
+/* Dành cho nút màu trắng (phần CTA) nếu bạn cũng muốn tắt đổi màu */
+.cta-section .btn-light:hover {
+    background-color: #ffffff !important;            /* Giữ nguyên nền trắng */
+    color: var(--text-dark) !important;              /* Giữ nguyên màu chữ mặc định */
+    border-color: #ffffff !important;                /* Giữ nguyên viền trắng */
+}
+
+
+/* --- HIỆU ỨNG ẢNH FAQ --- */
+
+.faq-img {
+    width: 65%;       /* Điều chỉnh độ rộng ảnh nhỏ hơn (thử 70% - 90% tùy ý) */
+    margin: 0 auto;   /* Căn giữa ảnh */
+    display: block;
+    
+    /* Hiệu ứng trượt và đổ bóng */
+    transition: all 0.4s ease-in-out;
+    transform: translateY(0);
+}
+
+/* Hiệu ứng khi rê chuột vào */
+.faq-img:hover {
+    transform: translateY(-15px); /* Trượt lên trên 15px */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2); /* Tạo bóng đổ sâu hơn khi trượt lên */
+    cursor: pointer;
+}
+
+/* =========================================
+   GIAO DIỆN ACCORDION (FAQ) SIÊU MƯỢT GIỐNG VIDEO
+   ========================================= */
+
+/* Định dạng tổng thể bao khối, tạo đường khóa trên cùng */
+.faq-custom-accordion {
+    border-top: 1px solid #e1e5eb; 
+}
+
+/* Cấu hình từng dòng câu hỏi: Triệt tiêu khoảng cách rời rạc, tạo liền khối */
+.faq-custom-accordion .accordion-item {
+    border: none;
+    border-bottom: 1px solid #e1e5eb; /* Đường kẻ phân cách thanh mảnh */
+    background-color: transparent;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important; 
+}
+
+/* Nút bấm tiêu đề câu hỏi */
+.faq-custom-accordion .accordion-button {
+    background-color: #fff !important;
+    color: var(--text-dark) !important;
+    padding: 22px 0 !important; /* Nới rộng vùng bấm cho thoáng đãng */
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none !important;
+    box-shadow: none !important; /* Xóa hoàn toàn viền bóng xanh mặc định khi click */
+    outline: none !important;
+    transition: color 0.3s ease !important;
+}
+
+/* Khóa chặt nền trắng và màu chữ khi thẻ đang ở trạng thái mở rộng */
+.faq-custom-accordion .accordion-button:not(.collapsed) {
+    background-color: #fff !important;
+    color: var(--text-dark) !important;
+}
+
+/* Nội dung văn bản câu trả lời */
+.faq-custom-accordion .accordion-body {
+    padding: 0 0 24px 0 !important; /* Chỉ tạo khoảng đệm đáy để không chạm sát vào dòng kẻ dưới */
+    line-height: 1.75;
+    font-size: 0.95rem;
+    color: #6c757d;
+}
+
+/* can thiệp vào lõi hiệu ứng chuyển dịch chiều cao tự động của Bootstrap */
+.faq-custom-accordion .collapsing {
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; /* Gia tốc mượt như chuyển động tự nhiên */
+}
+
+.faq-custom-accordion .collapse.show {
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Làm mượt quá trình xoay của icon mũi tên góc phải */
+.faq-custom-accordion .accordion-button::after {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    background-size: 1.1rem;
+}
+
+/* =========================================
+   COMPLETED PROJECTS SECTION
+   ========================================= */
+
+/* Định dạng thanh Tabs */
+.project-tabs {
+    border-bottom: 1px solid #dcdcdc; /* Đường kẻ xám nhạt toàn thanh */
+    margin-top: 30px;
+}
+
+.project-tabs .nav-item {
+    margin-bottom: -1px; /* Đẩy tab xuống đè lên đường kẻ mờ để tạo viền màu khi active */
+}
+
+.project-tabs .nav-link {
+    color: #4a4a4a;
+    font-size: 1.15rem;
+    font-weight: 600;
+    border: none;
+    background-color: transparent;
+    padding: 15px 40px;
+    border-bottom: 2px solid transparent; /* Chuẩn bị sẵn viền dưới ẩn */
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng khi rê chuột vào Tab */
+.project-tabs .nav-link:hover {
+    color: var(--brand-color);
+    border-color: transparent; /* Không hiện viền khi hover, chỉ đổi màu chữ */
+}
+
+/* Trạng thái Tab đang được chọn (Active) */
+.project-tabs .nav-link.active {
+    color: var(--brand-color);
+    background-color: transparent;
+    border-color: transparent transparent var(--brand-color) transparent; /* Chỉ hiện viền màu hồng ở cạnh dưới */
+}
+
+/* Tiêu đề dự án bên trong nội dung */
+.project-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.3;
+}
+
+/* Loại bỏ viền xanh mặc định của Bootstrap khi focus vào nút Tab */
+.project-tabs .nav-link:focus {
+    outline: none;
+    box-shadow: none;
+}
+.project-tabs .nav-link:not(.active):hover {
+    color: #4a4a4a !important; 
+    border-color: transparent !important; 
+}
+.project-tabs .nav-link::before {
+    display: none !important; /* Ẩn hoàn toàn thanh gạch dưới tự chạy ra */
+}
+/* =========================================
+   TESTIMONIALS SECTION (WHAT PEOPLE SAY)
+   ========================================= */
+
+/* Nền mờ thành phố phía sau */
+
+.testimonials-section {
+    position: relative;
+    /* rgba(255, 255, 255, 1) phía trái: Màu trắng đục hoàn toàn (mờ nhất)
+       rgba(255, 255, 255, 0.4) phía phải: Màu trắng trong suốt hơn (ảnh rõ hơn)
+    */
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0.6) 100%), 
+                url('../img/b2.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Định dạng thẻ chứa nội dung đánh giá */
+.testimonial-card {
+    border-radius: 6px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05); /* Đổ bóng nhẹ nhàng */
+    height: 100%;
+}
+
+/* Định dạng Avatar khách hàng */
+.testimonial-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid var(--brand-color); /* Viền màu hồng */
+    padding: 5px; /* Tạo khoảng trống giữa ảnh và viền */
+    object-fit: cover;
+}
+
+/* Icon dấu ngoặc kép */
+.relative-quote {
+    position: relative;
+}
+
+.quote-icon {
+    font-size: 2.5rem;
+    color: #e5e5e5;
+    position: absolute;
+    top: -8px;      /* Căn chỉnh lại để dấu ngoặc kép ngang hàng với chữ */
+    left: 0;        /* Đặt sát mép ngoài cùng bên trái */
+    opacity: 0.7;
+    z-index: 0;
+}
+
+.testimonial-card p {
+    position: relative;
+    z-index: 1;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    text-indent: 45px; /* Thêm dòng này: Thụt lề dòng đầu tiên 45px để né dấu ngoặc kép */
+}
+
+/* Tên khách hàng */
+.author-name {
+    color: var(--brand-color);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.author-company {
+    font-size: 0.85rem;
+}
+
+/* =========================================
+   TÙY CHỈNH NÚT ĐIỀU HƯỚNG CỦA CAROUSEL (INDICATORS)
+   ========================================= */
+
+/* Đẩy thanh báo vị trí xuống dưới cùng */
+.testimonials-section .custom-indicators {
+    position: relative;
+    margin-bottom: 0;
+    margin-top: 40px !important;
+}
+
+/* Đổi dấu chấm thành thanh ngang */
+.testimonials-section .custom-indicators button {
+    width: 25px !important;
+    height: 4px !important;
+    background-color: #d3d3d3 !important;
+    border: none !important;
+    margin: 0 5px !important;
+    border-radius: 2px;
+    opacity: 1 !important;
+    transition: all 0.4s ease-in-out !important;
+}
+
+/* Khi Slide đang hiển thị (Active) thì thanh ngang dài ra và đổi màu hồng */
+.testimonials-section .custom-indicators button.active {
+    background-color: var(--brand-color) !important;
+    width: 35px !important; 
+}
+
+.testimonial-img {
+    width: 110px;          
+    height: 110px;         
+    border-radius: 50%;    
+    border: 3px solid var(--brand-color); /* Viền màu hồng đỏ áp sát trực tiếp vào ảnh */
+    padding: 0;            /* Đưa padding về 0 để triệt tiêu khoảng trắng */
+    object-fit: cover;     
+}
+/* =========================================
+   LÀM MƯỢT CAROUSEL VÀ HIỆU ỨNG HOVER INDICATORS
+   ========================================= */
+
+/* 1. Kéo dài thời gian và làm mượt gia tốc trượt của các slide */
+.testimonials-section .carousel-item {
+    /* Mặc định của Bootstrap hơi nhanh (0.6s), ta tăng lên 0.8s hoặc 1s và dùng ease-in-out để trượt êm hơn */
+    transition: transform 0.8s ease-in-out !important; 
+}
+
+/* 2. Hiệu ứng khi đưa chuột (hover) vào các thanh gạch ngang bên dưới */
+.testimonials-section .custom-indicators button:hover {
+    background-color: var(--brand-color) !important; /* Đổi sang màu hồng đỏ chủ đạo */
+    opacity: 0.6 !important; /* Hơi mờ đi một chút để dễ phân biệt với thanh đang Active (đậm 100%) */
+    cursor: pointer;
+}
+/* =========================================
+   HIỆU CHỈNH CTA BOTTOM
+   ========================================= */
+
+.cta-bottom-section {
+    background-color: #fff;
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+}
+
+/* Đảm bảo khoảng cách giữa 2 nút bấm */
+.gap-3 {
+    gap: 1rem !important;
+}
+
+/* Đồng bộ kích thước nút bấm để nhìn chuyên nghiệp */
+.cta-bottom-section .btn {
+    min-width: 160px; /* Độ rộng tối thiểu cho nút */
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng khi hover vào nút BOOK A DEMO */
+.btn-outline-brand:hover {
+    background-color: var(--brand-color);
+    color: #fff;
+}
+/* =========================================
+   HIỆU ỨNG KHỐI MỜ (FOCUS RING) MÀU HỒNG KHI NHẤN CHUỘT
+   ========================================= */
+
+/* Dành cho nút "BOOK A DEMO" (Outline) và "GET STARTED" (Solid) */
+.btn-outline-brand:active, .btn-outline-brand:focus,
+.btn-brand:active, .btn-brand:focus {
+    /* Loại bỏ outline xanh mặc định của trình duyệt */
+    outline: none !important;
+    
+    /* Tạo khối mờ bao quanh nút (box-shadow) 
+       0 0 0 4px: độ dày của viền mờ
+       rgba(209, 73, 106, 0.3): màu hồng chủ đạo (var(--brand-color)) với độ mờ 0.3 */
+    box-shadow: 0 0 0 4px rgba(209, 73, 106, 0.3) !important;
+}
+
+/* =========================================
+   HIỆU ỨNG HOVER CHO NÚT BOOK A DEMO (CHUYỂN SANG NỀN HỒNG)
+   ========================================= */
+
+.btn-outline-brand {
+    /* Đảm bảo nút có sẵn viền hồng và chữ hồng */
+    border: 2px solid var(--brand-color) !important;
+    color: var(--brand-color) !important;
+    background-color: transparent !important;
+    transition: all 0.3s ease !important; /* Tạo độ mượt khi đổi màu */
+}
+
+.btn-outline-brand:hover {
+    /* Khi đưa chuột vào: đổi sang nền hồng, chữ trắng */
+    background-color: var(--brand-color) !important;
+    color: #ffffff !important;
+    border-color: var(--brand-color) !important;
+}
+/* =========================================
+   GIAO DIỆN FAQ DẠNG KHỐI TÁCH RỜI (NHƯ ẢNH 1)
+   ========================================= */
+
+/* 1. Tạo màu nền hơi xám/xanh nhạt cho cả khu vực FAQ để các khối trắng nổi bật lên */
+.faq-section {
+    background-color: #f7f9fc; /* Bạn có thể điều chỉnh màu nền này nếu muốn */
+}
+
+/* 2. Bỏ đường viền khóa trên cùng của cụm Accordion cũ */
+.faq-custom-accordion {
+    border-top: none !important;
+}
+
+/* 3. Tách rời từng thẻ câu hỏi thành các khối riêng biệt */
+.faq-custom-accordion .accordion-item {
+    background-color: #ffffff !important;
+    border: 1px solid #eaeaeb !important; /* Viền bao quanh khối rất mỏng và nhạt */
+    border-radius: 8px !important;        /* Bo góc tròn cho khối */
+    margin-bottom: 15px !important;       /* Tạo khoảng trống giữa các khối */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03); /* Đổ bóng siêu nhẹ tạo cảm giác nổi */
+    overflow: hidden; 
+}
+
+/* 4. Định dạng lại khoảng trống (padding) của nút bấm tiêu đề */
+.faq-custom-accordion .accordion-button {
+    padding: 20px 25px !important; /* Lùi lề trái phải vào 25px cho chữ không bị sát lề */
+    border-radius: 8px !important; 
+}
+
+/* 5. Định dạng lại khoảng trống của nội dung câu trả lời */
+.faq-custom-accordion .accordion-body {
+    padding: 0 25px 25px 25px !important; /* Căn chỉnh nội dung thẳng hàng với tiêu đề */
+}
+
+/* 1. Thiết lập độ mượt cho ảnh ở trạng thái bình thường */
+.about-section img {
+    transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+/* 2. Hiệu ứng khi đưa chuột vào (Hover) */
+.about-section img:hover {
+    transform: translateY(-15px) !important; /* Kéo ảnh trượt lên trên 15px */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important; /* Đổ bóng mềm bên dưới */
+}
+
+/* =========================================
+   NÚT BACK TO TOP (LÊN ĐẦU TRANG)
+   ========================================= */
+
+.back-to-top {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background-color: var(--brand-color, #e45b78); /* Màu hồng chủ đạo */
+    color: #ffffff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    text-decoration: none;
+    z-index: 999;
+    
+    /* Mặc định ẩn đi */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Class này sẽ được JS thêm vào khi cuộn chuột để hiện nút */
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hiệu ứng khi đưa chuột vào nút */
+.back-to-top:hover {
+    background-color: #c9405d; /* Đổi màu đậm hơn một chút */
+    color: #ffffff;
+}
+/* =========================================
+   HIỆU ỨNG LIÊN KẾT BẢN QUYỀN (FOOTER)
+   ========================================= */
+
+/* Trạng thái bình thường (khi chưa rê chuột) */
+.footer-copyright-link {
+    color: #4a4a4a; /* Màu xám đen giống với các chữ bên cạnh */
+    text-decoration: none; /* Bỏ gạch chân mặc định của thẻ link */
+    font-weight: 500;
+    transition: color 0.3s ease; /* Chuyển màu mượt mà */
+}
+
+/* Trạng thái khi đưa chuột vào (Hover) */
+.footer-copyright-link:hover {
+    color: var(--brand-color, #e45b78) !important; /* Chuyển sang màu hồng */
+    text-decoration: none;
+}
+/* =========================================
+   HIỆU ỨNG TRƯỢT LÊN CHO 3 ẢNH DỰ ÁN
+   ========================================= */
+
+/* Trạng thái bình thường: mượt mà */
+.project-hover-img {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease !important;
+    transform: translateY(0);
+}
+
+/* Khi đưa chuột vào: trượt lên và đổ bóng */
+.project-hover-img:hover {
+    transform: translateY(-12px) !important; /* Trượt lên 12px */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important; /* Đổ bóng đậm hơn */
+    cursor: pointer;
+}
